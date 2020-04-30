@@ -4,7 +4,7 @@ import './index.scss';
 
 function FrontPage() {
   return <div id="front-page">
-    <img src="/src/assets/images/bobo.png"></img>
+    <img src={require("../../assets/images/bobo.png").default}></img>
     <h1>COMING SOON!</h1>
   </div>;
 };
