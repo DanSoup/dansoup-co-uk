@@ -1,0 +1,14 @@
+#about {
+  overflow: hidden;
+  font-family: 'Roboto-Light';
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}

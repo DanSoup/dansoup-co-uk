@@ -1,81 +1,79 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import FullPageView from '../common/FullPageView';
+import React from 'react';
+import './projects.scss';
+import {Link} from 'react-router-dom';
+import { nameToUrl } from '../common';
 
-function ProjectPreview (props) {
-  const {display = false} = props;
-  const [sShow, uShow] = useState(display);
-  const {title, img} = props;
-  return <>
-    <div onClick={() => {uShow(true)}} className="text-container project-preview">
-      <div className="img-container"><img src={img}/></div>
-      <h1>{title}</h1>
-    </div>
-    {sShow && <FullPageView title={title} onClose={() => uShow(false)}>{props.children}</FullPageView>}
-  </>
-}
+const projects = [
+  {
+    label: 'HTML Canvas 3D Engine',
+    content: () => {
+      return <div>
+        <p>
+          An HTML Canvas element that can be used to emulate 3d graphics.
+        </p>
+        <p>
+          Due to my interest in video game development, mathematics and shapes in general I decided to create my own 3D engine using JavaScript and an HTML Canvas element.
+        </p>
+      </div>
+    },
+    url: 'html-canvas-3d-engine',
+    links: [
+      {
+        label: 'GitHub',
+        url: 'https://youtube.com'
+      }
+    ]
+  },
+  {
+    label: 'Pixel Perfect Canvas Panvas',
+    content: () => {
+      return <div>
+        <p>
+          An HTML Canvas element that can display vector and raster graphics in a "pixel perfect" fashion.
+        </p>
+      </div>
+    },
+    links: [
+      {
+        label: 'GitHub',
+        url: 'https://youtube.com'
+      }
+    ]
+  }
+]
 
 function Projects () {
+  return <div id="projects" style={{height: /^\/projects/.test(window.location.pathname) ? '100vh' : 0}}>
+    
+    {/* Labels */}
+    <div className="labels">
+      {projects.map(project => {
+        const path = `/projects/${nameToUrl(project.label)}`;
+        const selected = window.location.pathname === path;
 
-  return <div className="page">
-    {/* <div className="flex-row text-container">
-      <button>All</button>
-      <button>Websites</button>
-    </div> */}
-    <div className="project-container">
-      <ProjectPreview img="./src/assets/images/codeAndStuffPreview.png" title="Code and Stuff">
-        <p>This is text</p>
-      </ProjectPreview>
-      <ProjectPreview img="./src/assets/images/vinnieVolePreview.png" title="Vinnie Vole's Eternal Ennui">
-        <p><i>Vinnie Vole's Eternal Ennui</i> is my first attempt at making a videogame.</p>
-      </ProjectPreview>
-      <ProjectPreview img="./src/assets/images/teamHeirPreview.png" title="Team Heir" display={true}>
-        <div className="image-carousel">
-          <div className="image-container">
-            <img src="./src/assets/images/teamHeirPreview.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/horizontal.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/vertical.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/teamHeirPreview.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/horizontal.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/vertical.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/teamHeirPreview.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/horizontal.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/vertical.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/teamHeirPreview.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/horizontal.png"></img>
-          </div>
-          <div className="image-container">
-            <img src="./src/assets/images/vertical.png"></img>
-          </div>
-        </div>
-        <p>Team Heir events.</p>
-      </ProjectPreview>
+        return <Link to={path} className={'label-a' + (selected ? ' selected' : '')}><div className="label">
+          <div className="label-text">{project.label}</div>
+          <div className="corner"></div>
+        </div></Link>
+      })}
     </div>
-  </div>;
-};
 
-Projects.propTypes = {
+    {/* Pages */}
+    <div className="project-pages">
+      {projects.map(project => {
+        const path = `/projects/${nameToUrl(project.label)}`;
+        const selected = window.location.pathname === path;
 
+        return <div className={'project-page' + (selected ? ' selected' : '')}>
+          <h1>{project.label}</h1>
+          {project.content()}
+          {project.links.map(link => {
+            return <p>{link.label}: <a href={link.url}>LINK</a></p>
+          })}
+        </div>
+      })}
+    </div>
+  </div>
 };
 
 export default Projects;

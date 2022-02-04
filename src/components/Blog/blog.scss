@@ -1,0 +1,97 @@
+$background: #000000;
+$border: #00ffffff;
+$line-solid: #00ffffa0;
+$line-fade: #00ffff05; 
+
+@keyframes background-scroll-y {
+  0% {background-position-y: 0px};
+  100% {background-position-y: 100px};
+}
+
+@keyframes background-scroll-x {
+  0% {background-position-x: 0px};
+  100% {background-position-x: 100px};
+}
+
+#blog {
+  overflow: hidden;
+  background-color: $background;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Lastwaerk';
+  color: #ffffff;
+
+  > * {
+    z-index: 100;
+  }
+
+  #blog-sidebar {
+    width: 400px;
+
+    .blog-sidebar-item {
+      border: solid $border 1px;
+      background: #00000080;
+      margin: 10px;
+    }
+  }
+
+  #blog-content {
+    flex-grow: 1;
+
+    .blog-item {
+      border: solid $border 1px;
+      background: #00000080;
+      margin: 10px;
+      position: relative;
+
+      h1 {
+        margin: 0px;
+      }
+
+      .inner-border {
+        top: -4px;
+        right: -4px;
+        left: -4px;
+        bottom: -4px;
+        position: absolute;
+        border: solid #008080 1px;
+      }
+    }
+  }
+
+  > .blog-bg {
+    position: absolute;
+    top: -110px;
+    bottom: -110px;
+    height: 300%;
+    left: -110px;
+    right: -110px;
+    filter: blur(2px);
+    z-index: 0;
+  }
+
+  > #blog-bg-1 {
+      background: repeating-linear-gradient(
+      0deg,
+      $line-fade,
+      $line-fade 99px,
+      $line-solid 99px,
+      $line-solid 100px,
+      $line-fade 100px
+    );
+    animation: background-scroll-y 11s linear infinite;
+
+  }
+
+  > #blog-bg-2 {
+    background: repeating-linear-gradient(
+      270deg,
+      $line-fade,
+      $line-fade 99px,
+      $line-solid 99px,
+      $line-solid 100px,
+      $line-fade 100px
+    );
+    animation: background-scroll-x 5s linear infinite;
+  }
+}
