@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "create": "webpack",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open --env.MODE=local",
+    "build": "webpack --mode production --env.MODE=dev",
+    "live": "webpack --mode production --env.MODE=live",
+    "test-build": "http-server .\\dist"
   },
   "repository": {
     "type": "git",
