@@ -12,7 +12,8 @@ module.exports = {
     rules: [
       {test: /\.(js)$/, use:'babel-loader'},
       {test: /\.s[ac]ss$/i, use:['style-loader', 'css-loader', 'sass-loader']},
-      {test: /\.(png|jpe?g|gif|ttf)$/i, use:['file-loader']}
+      {test: /\.(png|jpe?g|gif)$/i, use:['file-loader']},
+      {test: /\.(woff|woff2|eot|ttf|otf)$/i, use:['file-loader']}
     ]
   },
   mode: 'development',
@@ -23,8 +24,8 @@ module.exports = {
     new HtmlWebpackPlugin ({
       template: 'src/index.html'
     }),
-    new CopyPlugin([
-      { from: 'src/public', to: 'public' }
-    ])
+    // new CopyPlugin([
+    //   { from: 'src/public', to: 'public' }
+    // ])
   ]
 }
