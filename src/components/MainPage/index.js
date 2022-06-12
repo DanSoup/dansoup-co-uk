@@ -4,6 +4,7 @@ import About from '../About/index';
 import Blog from '../Blog/index';
 import Projects from '../Projects/index';
 import Menu from '../common/Menu';
+import NotFound from '../common/NotFound';
 
 const MainPage = (props) => {
   let location = useLocation();
@@ -15,6 +16,7 @@ const MainPage = (props) => {
       <Blog/>
       <Projects/>
       <About/>
+      {/* <NotFound/> */}
     </div>
   </div>
 
